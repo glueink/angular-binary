@@ -1,0 +1,61 @@
+<form [formGroup]="binaryForm" (ngSubmit)="submit()" class="binary">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="binary__header">
+    <p>Бинарный опцион</p>
+  </div>
+  <div class="binary__container">
+    <div class="binary__left">
+      <p>Выберите валюту и введите сумму ставки:</p><br>
+      <div class="binary__wrapper binary__wrapper--grey">
+        <div class="row">
+
+          <fieldset class="select-control">
+            <label>Валюта</label>
+            <select formControlName="currencyControl">
+              <option [ngValue]="null" selected>--Currency--</option>
+              <option *ngFor="let item of currencies$ | async | keyvalue" [ngValue]="item.value">
+                <span [innerHTML]="item.value.symbol"></span> {{ item.key }}
+              </option>
+            </select>
+          </fieldset>
+
+          <fieldset class="number-control">
+            <label>Сумма</label>
+            <input formControlName="priceControl" type="number">
+          </fieldset>
+        </div>
+
+        <p class="desc-text">После следующего изменения котировок индекс биткойна к этой волюте пойдет:</p>
+        <div class="row">
+          <fieldset class="bet-control">
+            <input formControlName="betControl" type="radio" value="more">
+            <label><fa-icon [icon]="faArrowUp" size="md"></fa-icon> ВВЕРХ</label>
+          </fieldset>
+          <fieldset class="bet-control">
+            <input formControlName="betControl" type="radio" value="less">
+            <label><fa-icon [icon]="faArrowDown" size="md"></fa-icon> ВНИЗ</label>
+          </fieldset>
+        </div>
+      </div>
+      <fieldset  class="check-control">
+        <label><input formControlName="checkControl" type="checkbox">
+          Я ознакомлен с правилами сервиса</label>
+      </fieldset>
+    </div>
+    <div class="binary__right">
+      <p>Текущие индексы:</p><br>
+      <div *ngFor="let item of currencies$ | async | keyvalue" class="currency-item">
+        <p [innerHTML]="item.value.symbol" class="symbol"></p>
+        <p class="currency">
+          <strong>{{ item.value.code }}</strong>
+          {{ (1 / item.value.rate_float) | number:'1.0-8' }}
+        </p>
+      </div>
+      <p style="text-align: right; line-height: 1.3;">По текущему курсу: {{ 1 / currentRate?.rate_float | number:'1.0-8' }} <fa-icon [icon]="faBtc"></fa-icon></p>
+    </div>
+  </div>
+  <div class="binary__button">
+    <button [disabled]="!binaryForm.valid" class="btn btn--check"><fa-icon [icon]="faCheck" size="md"></fa-icon> сделать ставку</button>
+  </div>
+
+</form>

@@ -1,0 +1,17 @@
+<header class="header">
+  <a href="#" class="header__logo">Logo</a>
+  <div class="header__info">
+    <div class="user">
+      <div class="user__icon">
+        <fa-icon [icon]="faUserCircle" size="2x"></fa-icon>
+      </div>
+      <div class="user__info">
+        <strong>Иннокентий Ф. </strong><span>Счет: #123123</span><br>
+        <span>Доступно средств: </span><strong>{{ score | number:'1.0-6' }}</strong>
+      </div>
+    </div>
+    <span class="bitcoin">
+      <fa-icon [icon]="faBtc" size="lg"></fa-icon>
+    </span>
+  </div>
+</header>

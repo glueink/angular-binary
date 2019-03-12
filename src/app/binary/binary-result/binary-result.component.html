@@ -1,0 +1,27 @@
+<div class="binary" *ngIf="isWinner">
+  <div class="binary__header">
+    <p>Ставка выиграла</p>
+  </div>
+  <div class="binary__result-body">
+    <fa-icon [icon]="faCheck" size="3x"></fa-icon>
+    <p>Поздравляем! Ваша ставка выиграла.</p>
+    <p>Сумма выиграша по обновленному курсу: <strong class="win-result">
+      {{ result.betPrice / result.newCurrency?.rate_float }} BTC ({{ result.betPrice }} {{ result.newCurrency?.code }})
+    </strong></p>
+    <button (click)="return()" class="btn btn--outline">Сделать еще ставку</button>
+  </div>
+</div>
+
+<div class="binary" *ngIf="!isWinner">
+  <div class="binary__header">
+    <p>Ставка проиграла</p>
+  </div>
+  <div class="binary__result-body">
+    <fa-icon [icon]="faTimes" size="3x"></fa-icon>
+    <p>Ваша ставка проиграла.</p>
+    <p>Вы потеряли по обновленному курсу: <strong class="loose-result">
+        {{ result.betPrice / result.newCurrency?.rate_float }} BTC ({{ result.betPrice }} {{ result.newCurrency?.code }})
+    </strong></p>
+    <button (click)="return()" class="btn btn--outline">Сделать еще ставку</button>
+  </div>
+</div>
