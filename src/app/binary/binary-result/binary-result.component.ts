@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
-import { ScoreService } from 'src/app/score.service';
+import { ScoreService } from '../../score.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { BinaryService } from '../binary.service';
 

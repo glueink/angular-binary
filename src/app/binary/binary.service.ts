@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { catchError, pluck, startWith, switchMap, distinctUntilChanged } from 'rxjs/operators';
-import { of, interval, Subject, BehaviorSubject } from 'rxjs';
+import { of, interval, BehaviorSubject } from 'rxjs';
 import { isEqual } from 'lodash';
 
 @Injectable({ providedIn: 'root' })
